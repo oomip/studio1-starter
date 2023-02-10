@@ -8,7 +8,20 @@
 </head>
 <body>
 	<div id="app">
-
+		<h1> {{ count(get(data, "tasks.*.done")) }} of {{ count(tasks) }} tasks done. </h1>
+			<p>
+				<ul>
+					<li v-for="(item, i) in tasks">
+						<input type="checkbox" v-model="tasks[i].done"/> 
+						<input type="text" v-model="tasks[i].title" /> 
+						<button type="button" @click="this.deleteItem(i)"> x </button>
+					</li>
+				</ul>	   
+			</p>
+			<p>
+				<button type="button" @click="this.addItem()"> Add item </button>
+				<button type="button" @click="this.clearCompleted()"> Clear completed </button>
+			</p>
 	</div>
 </body>
 </html>
